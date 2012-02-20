@@ -1,5 +1,5 @@
 Name:		binwalk
-Version:	0.4.1
+Version:	0.4.2
 Release:	1
 Summary:	A tool for identifying files embedded inside firmware images
 Group:		System/Configuration/Other 
