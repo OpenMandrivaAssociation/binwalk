@@ -44,3 +44,15 @@ cd src/
 %{_sysconfdir}/%{name}/magic.bincast
 %{_sysconfdir}/%{name}/magic.binwalk
 %{_sysconfdir}/%{name}/magic.o
+
+
+%changelog
+* Mon Feb 20 2012 Alexander Khrukin <akhrukin@mandriva.org> 0.4.2-1
++ Revision: 778034
+- rpmlint desc fix
+- version update 0.4.2
+
+* Wed Dec 07 2011 Alexander Khrukin <akhrukin@mandriva.org> 0.4.1-1
++ Revision: 738535
+- imported package binwalk
+
