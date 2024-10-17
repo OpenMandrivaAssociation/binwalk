@@ -4,7 +4,7 @@ Release:	2
 Summary:	A tool for identifying files embedded inside firmware images
 Group:		System/Configuration/Other 
 License:	MIT
-URL:		http://code.google.com/p/binwalk/
+URL:		https://code.google.com/p/binwalk/
 Source0:	http://binwalk.googlecode.com/files/%{name}-%{version}.tar.gz
 
 BuildRequires:	zlib1-devel
