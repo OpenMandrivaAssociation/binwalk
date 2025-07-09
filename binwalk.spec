@@ -1,14 +1,14 @@
-Name:		binwalk
-Version:	0.4.2
-Release:	2
-Summary:	A tool for identifying files embedded inside firmware images
-Group:		System/Configuration/Other 
-License:	MIT
-URL:		https://code.google.com/p/binwalk/
-Source0:	http://binwalk.googlecode.com/files/%{name}-%{version}.tar.gz
+%define _empty_manifest_terminate_build 0
 
-BuildRequires:	zlib1-devel
-BuildRequires:	curl-devel
+Name:          binwalk
+Version:       3.1.0
+Release:       1
+Summary:       Firmware Analysis Tool
+License:       MIT
+URL:           https://github.com/ReFirmLabs/binwalk
+Source0:       https://github.com/ReFirmLabs/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+BuildRequires: rust
+BuildRequires: cargo
 
 %description
 Binwalk is a tool for searching a given binary 
@@ -26,33 +26,19 @@ as compressed/archived files, firmware headers,
 Linux kernels, bootloaders, filesystems, etc. 
 
 %prep
-%setup -q
-
+%autosetup
 
 %build
-cd src/
-%configure2_5x
-%make
+cargo build --release --locked
 
 %install
-cd src/
-%makeinstall_std
+mkdir -p %{buildroot}%{_bindir}
+install -Dm 755 "target/release/%{name}" %{buildroot}%{_bindir}
+
+%check
+# https://github.com/ReFirmLabs/binwalk/issues/882
+# cargo test --release --locked
 
 %files
+%license LICENSE
 %{_bindir}/%{name}
-%{_sysconfdir}/%{name}/magic.binarch
-%{_sysconfdir}/%{name}/magic.bincast
-%{_sysconfdir}/%{name}/magic.binwalk
-%{_sysconfdir}/%{name}/magic.o
-
-
-%changelog
-* Mon Feb 20 2012 Alexander Khrukin <akhrukin@mandriva.org> 0.4.2-1
-+ Revision: 778034
-- rpmlint desc fix
-- version update 0.4.2
-
-* Wed Dec 07 2011 Alexander Khrukin <akhrukin@mandriva.org> 0.4.1-1
-+ Revision: 738535
-- imported package binwalk
-
